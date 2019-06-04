@@ -1,0 +1,10 @@
+https://stackoverflow.com/questions/3344115/obfuscating-python-code
+
+This is only a limited, first-level obfuscation solution, but it is built-in: Python has a compiler to byte-code:
+
+python -OO -m py_compile <your program.py>
+produces a .pyo file that contains byte-code, and where docstrings are removed, etc. You can rename the .pyo file with a .py extension, and python <your program.py> runs like your program but does not contain your source code.
+
+PS: the "limited" level of obfuscation that you get is such that one can recover the code (with some of the variable names, but without comments and docstrings). See the first comment, for how to do it. However, in some cases, this level of obfuscation might be deemed sufficient.
+
+PPS: If your program imports modules obfuscated like this, then you need to rename them with a .pyc suffix instead (I'm not sure this won't break one day), or you can work with the .pyo and run them with python -O ….pyo (the imports should work). This will allow Python to find your modules (otherwise, Python looks for .py modules).
