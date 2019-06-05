@@ -61,7 +61,7 @@ def deletecheck():
 
 
 def send_register_email(ulid):
-    os.system("python email/email.py " + str(ulid) + "-r ")
+    os.system("python email/emailTest.py " + str(ulid) + " -r ")
 
 
 def main():
