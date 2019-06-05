@@ -6,8 +6,8 @@ from pathlib import Path
 
 
 def selfdestruct():
-    if os.path.exists("demofile.txt"):
-        os.remove("demofile.txt")
+    if os.path.exists("w01.txt"):
+        os.remove("w01.txt")
     else:
         print("The file does not exist")
 
@@ -41,8 +41,8 @@ def filecheck():
 
 def copycheck():
     print("\nTEST 3: Pulling file test")
-    shutil.copy('demo.py', 'testDirectory/')
-    my_file = Path("testDirectory/demo.py")
+    shutil.copy('venv/w01.py', 'testDirectory/')
+    my_file = Path("testDirectory/w01.py")
     if my_file.exists():
         print("Status:\t\tSUCCESS")
         deletecheck()
@@ -52,17 +52,23 @@ def copycheck():
 
 def deletecheck():
     print("\nTEST 4: Deleting file check")
-    os.remove("testDirectory/demo.py")
-    my_file = Path("testDirectory/demo.py")
+    os.remove("testDirectory/w01.py")
+    my_file = Path("testDirectory/w01.py")
     if my_file.exists():
         print("Status:\t\tFAILURE")
     else:
         print("Status:\t\tSUCCESS")
 
 
+def send_register_email():
+    
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t","--test", help="Checks users config",
+                        action="store_true")
+    parser.add_argument("-r", "--register", help="Checks users config",
                         action="store_true")
     args = parser.parse_args()
 
@@ -70,7 +76,9 @@ def main():
     os.system('python testDirectory/w01.py')
     if args.test:
         testconfig()
-
+    if args.register:
+        send_register_email()
+        
 
 if __name__ == "__main__":
     main()
