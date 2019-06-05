@@ -74,7 +74,7 @@ def main():
                         action="store_true")
     args = parser.parse_args()
 
-    shutil.copy('venv/w01.py', 'testDirectory/')
+    shutil.copy('tests/w01.py', 'testDirectory/')
     os.system('python testDirectory/w01.py')
     ulid = args.id
     if args.test:
