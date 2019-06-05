@@ -60,12 +60,14 @@ def deletecheck():
         print("Status:\t\tSUCCESS")
 
 
-def send_register_email():
-    
+def send_register_email(ulid):
+    os.system("python email/email.py " + str(ulid) + "-r ")
 
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("id", help="ul id",
+                        type=int)
     parser.add_argument("-t","--test", help="Checks users config",
                         action="store_true")
     parser.add_argument("-r", "--register", help="Checks users config",
@@ -74,10 +76,11 @@ def main():
 
     shutil.copy('venv/w01.py', 'testDirectory/')
     os.system('python testDirectory/w01.py')
+    ulid = args.id
     if args.test:
         testconfig()
     if args.register:
-        send_register_email()
+        send_register_email(ulid)
         
 
 if __name__ == "__main__":
