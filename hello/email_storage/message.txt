@@ -1,0 +1,12 @@
+Dear ${PERSON_NAME}, 
+
+Thank you for registering for CS4415!
+You're unique token code is: ${PERSON_UUID}
+
+To use this code, simply follow these steps:
+1) Head over to your directory containing the handin program
+2) Create a new text file within this folder called "token.txt"
+3) Paste the code into the text file and save
+
+Yours Truly,
+JIM

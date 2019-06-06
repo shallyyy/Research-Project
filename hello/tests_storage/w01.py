@@ -12,10 +12,10 @@ def cleanup():
 
 # This code destroys itself after the code executes
 def selfDestrcut():
-    if os.path.exists("testDirectory/w01.py"):
-        os.remove("testDirectory/w01.py")
-        os.remove("testDirectory/main.exe")
-        os.remove("testDirectory/main.cpp")
+    if os.path.exists("testing_directory/w01.py"):
+        os.remove("testing_directory/w01.py")
+        os.remove("testing_directory/main.exe")
+        os.remove("testing_directory/main.cpp")
     else:
         print("The file does not exist")
 
@@ -23,13 +23,13 @@ def selfDestrcut():
 def main():
     os.system("echo Compiling main")
     os.system("echo -------------------")
-    shutil.copy('main.cpp', 'testDirectory/')
-    if os.system('g++ testDirectory/main.cpp' + ' -o testDirectory/main' ) ==0:
+    shutil.copy('main.cpp', 'testing_directory/')
+    if os.system('g++ testing_directory/main.cpp' + ' -o testing_directory/main' ) ==0:
         os.system("echo Code compiled")
         os.system("echo -------------------")
         os.system("echo Running main")
         os.system("echo -------------------")
-        os.system('testDirectory\main')
+        os.system('testing_directory\main')
     else:
         os.system("echo Code failed to compile")
         os.system("echo -------------------")

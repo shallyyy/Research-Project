@@ -14,17 +14,22 @@ PASSWORD = 'Hillcrest9'
 
 def get_contacts(filename):
     """
-    Return two lists names, emails containing names and email addresses
+    Return two lists names, emails containing names and email_storage addresses
     read from a file specified by filename.
     """
 
     names = []
     emails = []
+    ids = []
+    uuids = []
     with open(filename, mode='r', encoding='utf-8') as contacts_file:
         for a_contact in contacts_file:
             names.append(a_contact.split()[0])
             emails.append(a_contact.split()[1])
-    return names, emails
+            ids.append(a_contact.split()[2])
+            uuids.append(a_contact.split()[3])
+
+    return names, emails, ids, uuids
 
 
 def read_template(filename):
@@ -38,20 +43,20 @@ def read_template(filename):
     return Template(template_file_content)
 
 def reg_email():
-    names, emails = get_contacts('email/contacts.txt')  # read contacts
-    message_template = read_template('email/message.txt')
+    names, emails, ids, uuids = get_contacts('email_storage/contacts.txt')  # read contacts
+    message_template = read_template('email_storage/message.txt')
 
     # set up the SMTP server
     s = smtplib.SMTP(host='smtp-mail.outlook.com', port=587)
     s.starttls()
     s.login(MY_ADDRESS, PASSWORD)
 
-    # For each contact, send the email:
-    for name, email in zip(names, emails):
+    # For each contact, send the email_storage:
+    for name, email , ids, uuid in zip(names, emails, ids, uuids):
         msg = MIMEMultipart()  # create a message
 
         # add in the actual person name to the message template
-        message = message_template.substitute(PERSON_NAME=name.title())
+        message = message_template.substitute(PERSON_NAME=name.title(), PERSON_UUID=uuid.title())
 
         # Prints out the message body for our sake
         print(message)
@@ -59,7 +64,7 @@ def reg_email():
         # setup the parameters of the message
         msg['From'] = MY_ADDRESS
         msg['To'] = email
-        msg['Subject'] = "This is TEST"
+        msg['Subject'] = "Welcome to CS4415!"
 
         # add in the message body
         msg.attach(MIMEText(message, 'plain'))
