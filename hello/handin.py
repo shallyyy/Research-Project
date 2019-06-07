@@ -1,4 +1,3 @@
-import atexit
 import os
 import argparse
 import shutil
@@ -49,6 +48,7 @@ def send_register_email(ulid):
 
 
 def run_submission():
+    shutil.copy('main.cpp', 'testing_directory/')
     shutil.copy('tests_storage/w01.py', 'testing_directory/')
     os.system('python testing_directory/w01.py')
 
@@ -70,7 +70,7 @@ def main():
         directorycheck()
     elif args.register:
         send_register_email(args.id)
-    elif args.handin:
+    elif args.submit:
         run_submission()
 
 
